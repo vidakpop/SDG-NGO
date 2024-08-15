@@ -1,0 +1,361 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - SDGs NGO{% endblock %}
+
+{% block content %}
+<header>
+    <div class="container">
+        <div class="header-info-par">
+            <h1 class="typewrite" data-period="2000" data-type='["Making the World a Better Place", "Join Us in Our Mission", "Together We Can Achieve More"]'>
+            </h1>
+            <p>Our NGO is committed to achieving the Sustainable Development Goals (SDGs) and making a lasting impact on the world.</p>
+            <a href="{% url 'about' %}" class="a">Learn More</a>
+        </div>
+        <div class="video">
+            <video id="video" autoplay loop muted>
+                <source src="{% static 'images/ngo.mp4' %}" type="video/mp4" />
+            </video>
+        </div>
+    </div>
+</header>
+
+<section id="welcome-text">
+    <div class="container">
+        <h2>Welcome to Our NGO</h2>
+        <p>We focus on key areas such as education, health, gender equality, and environmental sustainability.</p>
+    </div>
+</section>
+   <!-- Slides Section Start-->
+   <section id="slides-par">
+    <div class="container">
+        <div class="slides">
+            <div class="slide_1" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('static/images/recipe_slides/education.jpg');">
+                <div class="slide-info">
+                    <p>Education</p>
+                </div>
+            </div>
+            <div class="slide_1" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('static/images/recipe_slides/health.jpeg');">
+                <div class="slide-info">
+                    <p>Health</p>
+                </div>
+            </div>
+            <div class="slide_1" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('static/images/recipe_slides/equality.jpeg');">
+                <div class="slide-info">
+                    <p>Gender & Equality</p>
+                </div>
+            </div>
+            <div class="slide_1" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('static/images/recipe_slides/environment.jpg');">
+                <div class="slide-info">
+                    <p>Environmental sustainability</p>
+                </div>
+            </div>
+            <div class="slide_1" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('static/images/recipe_slides/community.jpeg');">
+                <div class="slide-info">
+                    <p>Community Empowerment</p>
+                </div>
+            </div>
+            <div class="slide_1" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('static/images/recipe_slides/youth.jpeg');">
+                <div class="slide-info">
+                    <p>Youth Empowerment</p>
+                </div>
+            </div>
+            <div class="slide_1" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('static/images/recipe_slides/hunger.jpeg');">
+                <div class="slide-info">
+                    <p>Zero Hunger</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Slides Section Start-->
+
+<!-- Gallery Section Starts -->
+<section id="gallery">
+    <div class="container">
+        <div class="row">
+            <div align="center" class="filter-btn-par">
+                <button class="filter-button" data-filter="all">ALL</button>
+                {%for category in categories%}
+                <button class="filter-button" data-filter="{{category.name|slugify}}">{{category.name}}</button>
+                {% endfor %}
+            </div>
+            <div class="filter-gal-par">
+                {% for image in images  %}
+                <div class="gallery-item filter {{image.category.name|slugify}}">
+                    <img src="{{image.image.url}}" alt="{{image.description}}" class="img-responsive">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Gallery Section Ends -->
+
+<!-- Multiple Slider Section Starts -->
+ <style>
+    .owl-carousel .item {
+        position: relative;
+        text-align: center;
+    }
+    
+    .owl-carousel .owl-img-par {
+        position: relative;
+        width: 100%;
+        height: 300px; /* Set a fixed height for the container */
+        overflow: hidden;
+    }
+    
+    .owl-carousel .owl-img-par img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+        display: block;
+    }
+    
+    
+ </style>
+ 
+<section id="water-slider">
+    <div class="container">
+        <h3>Explore Our Upcoming Events</h3>
+        <div class="owl-carousel owl-theme">
+            {% for event in events %}
+            <div class="item">
+                <div class="owl-img-par">
+                    <img src="{{ event.image.url }}" alt="" class="img-responsive" />
+                    <div class="owl-img-info">
+                        <h3>Location: {{ event.location }}</h3>
+                        <p>Date: {{ event.date|date:"F j, Y, g:i a" }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Multiple Slider Section Ends -->
+
+
+<!-- Book Now Section Start -->
+<section id="book" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('{% static 'images/sdg2.jpg' %}'); background-attachment: fixed; background-position: center center; background-repeat: no-repeat; background-size: cover; padding: 100px 0px; color: #fff;">
+    <div class="container">
+        <div class="book-content-par">
+            <div class="book-counter">
+                <h3>Book Now</h3>
+                <div id="clockdiv">
+                    <div>
+                        <span class="days"></span>
+                        <div class="smalltext">Days</div>
+                    </div>
+                    <div>
+                        <span class="hours"></span>
+                        <div class="smalltext">Hours</div>
+                    </div>
+                    <div>
+                        <span class="minutes"></span>
+                        <div class="smalltext">Minutes</div>
+                    </div>
+                    <div>
+                        <span class="seconds"></span>
+                        <div class="smalltext">Seconds</div>
+                    </div>
+                </div>
+            </div>
+            <div class="book-form">
+                <form>
+                    <input type="text" id="fname" name="firstname" placeholder="Your Name...">
+                    <input type="text" id="lname" name="lastname" placeholder="Your Last Name...">
+                    <select name="country" id="country">
+                        <option value="kenya">Kenya</option>
+                        <option value="uganda">Uganda</option>
+                        <option value="tanzania">Tanzania</option>
+                    </select>
+                    <textarea name="subject" id="subject" placeholder="Write something..." style="height: 200px;"></textarea>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+<script>
+    function getTimeRemaining(endtime) {
+        const t = Date.parse(endtime) - Date.parse(new Date());
+        const seconds = Math.floor((t / 1000) % 60);
+        const minutes = Math.floor((t / 1000 / 60) % 60);
+        const hours = Math.floor((t / 1000 / 60 / 60) % 24);
+        const days = Math.floor(t / (1000 * 60 * 60 * 24));
+        return {
+          'total': t,
+          'days': days,
+          'hours': hours,
+          'minutes': minutes,
+          'seconds': seconds
+        };
+      }
+      
+      function initializeClock(id, endtime) {
+        const clock = document.getElementById(id);
+        const daysSpan = clock.querySelector('.days');
+        const hoursSpan = clock.querySelector('.hours');
+        const minutesSpan = clock.querySelector('.minutes');
+        const secondsSpan = clock.querySelector('.seconds');
+      
+        function updateClock() {
+          const t = getTimeRemaining(endtime);
+      
+          daysSpan.innerHTML = t.days;
+          hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+          minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+          secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+      
+          if (t.total <= 0) {
+            clearInterval(timeinterval);
+          }
+        }
+      
+        updateClock();
+        const timeinterval = setInterval(updateClock, 1000);
+      }
+      
+      document.addEventListener('DOMContentLoaded', (event) => {
+          var eventDate = moment("{{ most_upcoming_event_date|date:'Y-m-d H:i:s'|escapejs }}", "YYYY-MM-DD HH:mm:ss").toDate();
+          initializeClock('clockdiv', eventDate);
+      });
+      
+</script>
+
+
+
+<section id="location">
+    <div class="container">
+        <h2>Our Location</h2>
+        <p>Find us at our main office located at 123 SDG Avenue, Sustainable City. We are open to visitors and inquiries during business hours from 9:00 AM to 5:00 PM, Monday to Friday.</p>
+        <!-- Placeholder for Map -->
+        <div id="map-placeholder">
+            <!-- Replace this div with an embedded Google Map -->
+            <p>Map loading...</p>
+        </div>
+    </div>
+</section>
+
+<section id="about-us">
+    <div class="container">
+        <h2>About Us</h2>
+        <p>We are dedicated to achieving the Sustainable Development Goals (SDGs) set by the United Nations. Our mission is to eradicate poverty, promote education, ensure health, achieve gender equality, and protect the environment.</p>
+        <br>
+        <h3>Our Vision</h3>
+        <p>A world where everyone has access to basic human rights and opportunities, living in harmony with the environment.</p>
+    </div>
+</section>
+<br>
+<br>
+<section id="contact">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>We would love to hear from you. Please reach out to us via the form below or contact us directly at our office.</p>
+        <form action="{% url 'contact' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+<style>#location, #about-us, #contact {
+    background-color: #f5f5f5;
+    padding: 50px 0;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#location h2, #about-us h2, #contact h2 {
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #DAA520; /* Gold */
+}
+
+#location p, #about-us p, #contact p {
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+}
+
+#about-us h3 {
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #DAA520; /* Black */
+}
+
+#contact .form-group {
+    margin-bottom: 20px;
+}
+
+#contact .form-group label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#contact .form-group input, #contact .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+#contact .form-group input:focus, #contact .form-group textarea:focus {
+    outline: none;
+    border-color: #DAA520; /* Gold */
+}
+
+#contact button[type="submit"] {
+    background-color: #000; /* Black */
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#contact button[type="submit"]:hover {
+    background-color: #DAA520; /* Gold */
+}
+</style>
+{% endblock %}

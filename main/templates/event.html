@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Events - SDGs NGO{% endblock %}
+
+{% block content %}
+<br><br>
+
+<section id="events">
+    <div class="container">
+        <h2>🎉 Upcoming Events 🎉</h2>
+        <p>Join us in our upcoming events focused on achieving the Sustainable Development Goals (SDGs).</p>
+
+        {% if most_upcoming_event %}
+        <!-- Main Upcoming Event -->
+        <div class="main-event">
+            <div class="event-img">
+                <img src="{{ most_upcoming_event.image.url }}" alt="{{ most_upcoming_event.title }}">
+            </div>
+            <div class="event-details">
+                <h3>{{ most_upcoming_event.title }}</h3>
+                <p>{{ most_upcoming_event.description }}</p>
+                <p><strong>📍 Location:</strong> {{ most_upcoming_event.location }}</p>
+                <p><strong>🗓️ Date:</strong> {{ most_upcoming_event.date|date:"F j, Y, g:i a" }}</p>
+                <a href="{% url 'home' %}#book" class="btn-book">Book Now</a>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Carousel for Other Events -->
+        <div class="owl-carousel owl-theme">
+            {% for event in events %}
+                {% if event != most_upcoming_event %}
+                <div class="item">
+                    <div class="event-item">
+                        <div class="event-img">
+                            <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                        </div>
+                        <div class="event-details">
+                            <h3>{{ event.title }}</h3>
+                            <p>{{ event.description }}</p>
+                            <p><strong>📍 Location:</strong> {{ event.location }}</p>
+                            <p><strong>🗓️ Date:</strong> {{ event.date|date:"F j, Y, g:i a" }}</p>
+                            <a href="{% url 'home' %}#book" class="btn-book">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Owl Carousel CSS and JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: true,
+        dots: true,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1000: {
+                items: 3
+            }
+        }
+    });
+});
+</script>
+
+<style>
+/* Event section styling */
+#events {
+    padding: 50px 0;
+    background: linear-gradient(135deg, #f9f9f9, #e3f2fd);
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+/* Main event styling */
+.main-event {
+    margin-bottom: 50px;
+    padding: 30px;
+    background: linear-gradient(135deg, #e8f5e9, #a5d6a7);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.main-event .event-img img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.main-event .event-img img:hover {
+    transform: scale(1.05);
+}
+
+.main-event .event-details h3 {
+    font-size: 2.2em;
+    color: #333;
+}
+
+.main-event .event-details p {
+    margin: 15px 0;
+    font-size: 1.3em;
+    color: #666;
+}
+
+.main-event .btn-book {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #27ae60;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.main-event .btn-book:hover {
+    background-color: #219150;
+    transform: scale(1.05);
+}
+
+/* Carousel event styling */
+.owl-carousel .event-item {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    height: 450px; /* Fixed height for uniform size */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: fadeInUp 0.8s ease-in-out;
+}
+
+.owl-carousel .event-img img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.owl-carousel .event-img img:hover {
+    transform: scale(1.05);
+}
+
+.owl-carousel .event-details h3 {
+    font-size: 1.7em;
+    color: #333;
+}
+
+.owl-carousel .event-details p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #666;
+}
+
+.owl-carousel .btn-book {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.owl-carousel .btn-book:hover {
+    background-color: #219150;
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+{% endblock %}

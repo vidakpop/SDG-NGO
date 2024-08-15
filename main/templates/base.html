@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
+    <title>{% block title %}SDGs NGO{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,500;0,600;1,300&display=swap"
+        rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <!--<link type="text/css" rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}"> -->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-par">
+                <div class="footer-1">
+                    <h3 class="footer-logo-h">SDGs NGO</h3>
+                </div>
+                <div class="footer-1 footer-info">
+                    <h3>Our Mission</h3>
+                    <ul>
+                        <li><a href="#">Eradicate Poverty</a></li>
+                        <li><a href="#">Promote Education</a></li>
+                        <li><a href="#">Ensure Health</a></li>
+                        <li><a href="#">Achieve Gender Equality</a></li>
+                    </ul>
+                </div>
+                <div class="footer-1 footer-info">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-1 footer-info">
+                    <h3>Get Involved</h3>
+                    <ul>
+                        <li><a href="#">Donate</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Subscribe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">Copyright © 2024 SDGs NGO</p>
+    </footer>
+    
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/extrenaljq.js' %}"></script>
+</body>
+
+</html>

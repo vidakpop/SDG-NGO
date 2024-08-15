@@ -1,0 +1,24 @@
+<nav>
+    <div class="container">
+        <div class="menu-par">
+            <div class="logo-par">
+                <a href="{% url 'home' %}">
+                    <h2>SDGs NGO</h2>
+                </a>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a class="menu-hover" href="{% url 'home' %}">Home</a></li>
+                    <li><a class="menu-hover" href="/#about-us" class="nav-link">About Us</a></li>
+                    <li><a class="menu-hover" href="/#location" class="nav-link">Location</a></li>
+                    <li><a class="menu-hover" href="/#gallery" class="nav-link">Gallery</a></li>
+                    <li><a class="menu-hover" href="/#contact" class="nav-link">Contact</a></li>
+                    <li><a class="menu-hover" href="{% url 'event_list' %}">Events</a></li>
+                </ul>
+            </div>
+            <div id="toggle-btn">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </div>
+</nav>
